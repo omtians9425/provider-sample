@@ -15,8 +15,36 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: Container(),
         ),
-        body: Container(),
+        body: Level1(),
       ),
     );
+  }
+}
+
+class Level1 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Level2(),
+    );
+  }
+}
+
+class Level2 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        Container(),
+        Level3(),
+      ],
+    );
+  }
+}
+
+class Level3 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Text('Needs data');
   }
 }
