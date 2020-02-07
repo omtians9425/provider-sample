@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   final String data = 'Top secret data';
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Container(),
+    return Provider<String>(
+      create: (context) => data,
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
         ),
-        body: Level1(
-          data: data,
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text(data),
+          ),
+          body: Level1(),
         ),
       ),
     );
@@ -24,42 +27,29 @@ class MyApp extends StatelessWidget {
 }
 
 class Level1 extends StatelessWidget {
-  final String data;
-  Level1({this.data});
-
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Level2(
-        data: data,
-      ),
+      child: Level2(),
     );
   }
 }
 
 class Level2 extends StatelessWidget {
-  final String data;
-  Level2({this.data});
-
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
         Container(),
-        Level3(
-          data: data,
-        ),
+        Level3(),
       ],
     );
   }
 }
 
 class Level3 extends StatelessWidget {
-  final String data;
-  Level3({this.data});
-
   @override
   Widget build(BuildContext context) {
-    return Text(data);
+    return Text(Provider.of(context));
   }
 }
